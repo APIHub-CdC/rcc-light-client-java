@@ -9,22 +9,23 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(CatalogoResidencia.Adapter.class)
 public enum CatalogoResidencia {
 
-	_1("1"),
+	NUMBER_1(1),
 
-	_2("2"),
+	NUMBER_2(2),
 
-	_3("3"),
+	NUMBER_3(3),
 
-	_4("4"),
+	NUMBER_4(4),
 
-	_5("5");
-	private String value;
+	NUMBER_5(5);
 
-	CatalogoResidencia(String value) {
+	private Integer value;
+
+	CatalogoResidencia(Integer value) {
 		this.value = value;
 	}
 
-	public String getValue() {
+	public Integer getValue() {
 		return value;
 	}
 
@@ -50,7 +51,7 @@ public enum CatalogoResidencia {
 
 		@Override
 		public CatalogoResidencia read(final JsonReader jsonReader) throws IOException {
-			String value = jsonReader.nextString();
+			Integer value = jsonReader.nextInt();
 			return CatalogoResidencia.fromValue(String.valueOf(value));
 		}
 	}

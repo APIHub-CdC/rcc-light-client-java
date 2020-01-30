@@ -20,6 +20,7 @@ public enum CatalogoEstadoCivil {
 	V("V"),
 
 	E("E");
+
 	private String value;
 
 	CatalogoEstadoCivil(String value) {
