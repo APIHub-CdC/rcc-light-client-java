@@ -14,6 +14,7 @@ public enum CatalogoMoneda {
 	US("US"),
 
 	UD("UD");
+
 	private String value;
 
 	CatalogoMoneda(String value) {

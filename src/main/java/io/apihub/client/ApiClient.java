@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.net.URLEncoder;
+import java.security.cert.CertificateException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -18,18 +19,26 @@ import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
 import okhttp3.Call;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
+import okhttp3.OkHttpClient.Builder;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.internal.http.HttpMethod;
 
 public class ApiClient {
-
 	private String basePath = "";
-	private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
+	private static final String JSON = "application/json";
+	private Map<String, String> defaultHeaderMap = new HashMap<>();
 	private String tempFolderPath = null;
 	private JSON json;
 
@@ -100,7 +109,7 @@ public class ApiClient {
 	}
 
 	public List<Pair> parameterToPair(String name, Object value) {
-		List<Pair> params = new ArrayList<Pair>();
+		List<Pair> params = new ArrayList<>();
 
 		if (name == null || name.isEmpty() || value == null || value instanceof Collection)
 			return params;
@@ -168,7 +177,7 @@ public class ApiClient {
 
 	public String selectHeaderContentType(String[] contentTypes) {
 		if (contentTypes.length == 0 || contentTypes[0].equals("*/*")) {
-			return "application/text";
+			return JSON;
 		}
 		for (String contentType : contentTypes) {
 			if (isJsonMime(contentType)) {
@@ -216,7 +225,7 @@ public class ApiClient {
 
 		String contentType = response.headers().get("Content-Type");
 		if (contentType == null) {
-			contentType = "application/text";
+			contentType = JSON;
 		}
 		if (isJsonMime(contentType)) {
 			return json.deserialize(respBody, returnType);
@@ -336,7 +345,7 @@ public class ApiClient {
 
 		String contentType = (String) headerParams.get("Content-Type");
 		if (contentType == null) {
-			contentType = "application/text";
+			contentType = JSON;
 		}
 
 		RequestBody reqBody;
@@ -414,4 +423,40 @@ public class ApiClient {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
+	public static OkHttpClient getClientNoSSLVerification() {
+		try {
+			final TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+				@Override
+				public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType)
+						throws CertificateException {
+				}
+
+				@Override
+				public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType)
+						throws CertificateException {
+				}
+
+				@Override
+				public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+					return new java.security.cert.X509Certificate[] {};
+				}
+			} };
+
+			final SSLContext sslContext = SSLContext.getInstance("SSL");
+			sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+			final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+			Builder okHttpClient = new OkHttpClient().newBuilder().sslSocketFactory(sslSocketFactory)
+					.hostnameVerifier(new HostnameVerifier() {
+						@Override
+						public boolean verify(String hostname, SSLSession session) {
+							return true;
+						}
+					});
+
+			return okHttpClient.build();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

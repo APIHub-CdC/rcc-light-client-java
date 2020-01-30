@@ -76,6 +76,7 @@ public enum CatalogoPrevencion {
 	UP("UP"),
 
 	VR("VR");
+
 	private String value;
 
 	CatalogoPrevencion(String value) {

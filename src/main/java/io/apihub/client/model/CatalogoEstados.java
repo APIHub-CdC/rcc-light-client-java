@@ -74,6 +74,7 @@ public enum CatalogoEstados {
 	YUC("YUC"),
 
 	ZAC("ZAC");
+
 	private String value;
 
 	CatalogoEstados(String value) {

@@ -4,26 +4,26 @@ import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.apihub.client.model.Razon;
+import io.apihub.client.model.CatalogoRazones;
 import java.util.ArrayList;
 import java.util.List;
 
-@ApiModel(description = "")
+@ApiModel(description = "Contiene los elementos Score.")
 
 public class Score {
 	@SerializedName("nombreScore")
 	private String nombreScore = null;
-	@SerializedName("score")
-	private String score = null;
+	@SerializedName("valor")
+	private Integer valor = null;
 	@SerializedName("razones")
-	private List<Razon> razones = null;
+	private List<CatalogoRazones> razones = null;
 
 	public Score nombreScore(String nombreScore) {
 		this.nombreScore = nombreScore;
 		return this;
 	}
 
-	@ApiModelProperty(example = "FICO", value = "Nombre del tipo de score")
+	@ApiModelProperty(example = "FICO", value = "Nombre del modelo o tipo de score que se está reportando.")
 	public String getNombreScore() {
 		return nombreScore;
 	}
@@ -32,39 +32,39 @@ public class Score {
 		this.nombreScore = nombreScore;
 	}
 
-	public Score score(String score) {
-		this.score = score;
+	public Score valor(Integer valor) {
+		this.valor = valor;
 		return this;
 	}
 
-	@ApiModelProperty(value = "Calificación que obtuvo la persona evaluada.")
-	public String getScore() {
-		return score;
+	@ApiModelProperty(example = "546", value = "Valor de la calificación (SCORE) reportado. Los valores para FICO pueden ser 0 o dentro del intervalo 300 a 850.")
+	public Integer getValor() {
+		return valor;
 	}
 
-	public void setScore(String score) {
-		this.score = score;
+	public void setValor(Integer valor) {
+		this.valor = valor;
 	}
 
-	public Score razones(List<Razon> razones) {
+	public Score razones(List<CatalogoRazones> razones) {
 		this.razones = razones;
 		return this;
 	}
 
-	public Score addRazonesItem(Razon razonesItem) {
+	public Score addRazonesItem(CatalogoRazones razonesItem) {
 		if (this.razones == null) {
-			this.razones = new ArrayList<Razon>();
+			this.razones = new ArrayList<CatalogoRazones>();
 		}
 		this.razones.add(razonesItem);
 		return this;
 	}
 
-	@ApiModelProperty(value = "Razones por las que se generó el score.")
-	public List<Razon> getRazones() {
+	@ApiModelProperty(example = "[\"D8\",\"E4\",\"K0\",\"D2\"]", value = "")
+	public List<CatalogoRazones> getRazones() {
 		return razones;
 	}
 
-	public void setRazones(List<Razon> razones) {
+	public void setRazones(List<CatalogoRazones> razones) {
 		this.razones = razones;
 	}
 
@@ -77,13 +77,13 @@ public class Score {
 			return false;
 		}
 		Score score = (Score) o;
-		return Objects.equals(this.nombreScore, score.nombreScore) && Objects.equals(this.score, score.score)
+		return Objects.equals(this.nombreScore, score.nombreScore) && Objects.equals(this.valor, score.valor)
 				&& Objects.equals(this.razones, score.razones);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(nombreScore, score, razones);
+		return Objects.hash(nombreScore, valor, razones);
 	}
 
 	@Override
@@ -92,7 +92,7 @@ public class Score {
 		sb.append("class Score {\n");
 
 		sb.append("    nombreScore: ").append(toIndentedString(nombreScore)).append("\n");
-		sb.append("    score: ").append(toIndentedString(score)).append("\n");
+		sb.append("    valor: ").append(toIndentedString(valor)).append("\n");
 		sb.append("    razones: ").append(toIndentedString(razones)).append("\n");
 		sb.append("}");
 		return sb.toString();

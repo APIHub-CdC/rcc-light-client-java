@@ -30,6 +30,7 @@ public enum CatalogoFrecuenciaPago {
 	T("T"),
 
 	U("U");
+
 	private String value;
 
 	CatalogoFrecuenciaPago(String value) {

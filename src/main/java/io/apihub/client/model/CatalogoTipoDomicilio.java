@@ -18,6 +18,7 @@ public enum CatalogoTipoDomicilio {
 	P("P"),
 
 	E("E");
+
 	private String value;
 
 	CatalogoTipoDomicilio(String value) {
