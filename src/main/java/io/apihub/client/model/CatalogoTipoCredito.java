@@ -92,6 +92,7 @@ public enum CatalogoTipoCredito {
 	OT("OT"),
 
 	NC("NC");
+
 	private String value;
 
 	CatalogoTipoCredito(String value) {

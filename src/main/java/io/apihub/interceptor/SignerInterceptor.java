@@ -66,7 +66,6 @@ public class SignerInterceptor implements Interceptor {
 				.method(originalRequest.method(), originalRequest.body()).build();
 	}
 
-
 	private Response procesarVerificado(Response response) {
 		logger.debug("Verificando firmado...");
 		ResponseBody bodyAsStream = null;

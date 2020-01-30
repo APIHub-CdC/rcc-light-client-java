@@ -12,6 +12,7 @@ public enum CatalogoSexo {
 	F("F"),
 
 	M("M");
+
 	private String value;
 
 	CatalogoSexo(String value) {

@@ -16,8 +16,8 @@ import io.apihub.client.model.Consultas;
 import io.apihub.client.model.Creditos;
 import io.apihub.client.model.Domicilios;
 import io.apihub.client.model.Empleos;
-import io.apihub.client.model.PersonaPeticion;
-import io.apihub.client.model.PersonasPLD;
+import io.apihub.client.model.Mensajes;
+import io.apihub.client.model.Persona;
 import io.apihub.client.model.Respuesta;
 import io.apihub.client.model.Scores;
 
@@ -27,14 +27,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RCCLightFicoScorePldApi {
+public class ReporteDeCrditoConsolidadoLightConFicoScoreApi {
 	private ApiClient apiClient;
 
-	public RCCLightFicoScorePldApi() {
+	public ReporteDeCrditoConsolidadoLightConFicoScoreApi() {
 		this(Configuration.getDefaultApiClient());
 	}
 
-	public RCCLightFicoScorePldApi(ApiClient apiClient) {
+	public ReporteDeCrditoConsolidadoLightConFicoScoreApi(ApiClient apiClient) {
 		this.apiClient = apiClient;
 	}
 
@@ -55,6 +55,8 @@ public class RCCLightFicoScorePldApi {
 		List<Pair> localVarQueryParams = new ArrayList<Pair>();
 		List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 		Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+		
+			
 		if (xApiKey != null)
 			localVarHeaderParams.put("x-api-key", apiClient.parameterToString(xApiKey));
 		if (username != null)
@@ -129,6 +131,8 @@ public class RCCLightFicoScorePldApi {
 		List<Pair> localVarQueryParams = new ArrayList<Pair>();
 		List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 		Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+		
+			
 		if (xApiKey != null)
 			localVarHeaderParams.put("x-api-key", apiClient.parameterToString(xApiKey));
 		if (username != null)
@@ -203,6 +207,8 @@ public class RCCLightFicoScorePldApi {
 		List<Pair> localVarQueryParams = new ArrayList<Pair>();
 		List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 		Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+		
+			
 		if (xApiKey != null)
 			localVarHeaderParams.put("x-api-key", apiClient.parameterToString(xApiKey));
 		if (username != null)
@@ -278,6 +284,8 @@ public class RCCLightFicoScorePldApi {
 		List<Pair> localVarQueryParams = new ArrayList<Pair>();
 		List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 		Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+		
+			
 		if (xApiKey != null)
 			localVarHeaderParams.put("x-api-key", apiClient.parameterToString(xApiKey));
 		if (username != null)
@@ -343,11 +351,11 @@ public class RCCLightFicoScorePldApi {
 		return apiClient.execute(call, localVarReturnType);
 	}
 
-	public okhttp3.Call getPLDCall(String folioConsulta, String xApiKey, String username,
-			String password, final ProgressResponseBody.ProgressListener progressListener,
+	public okhttp3.Call getMensajesCall(String folioConsulta, String xApiKey, String username, String password,
+			final ProgressResponseBody.ProgressListener progressListener,
 			final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
 		Object localVarPostBody = null;
-		String localVarPath = "/{folioConsulta}/pld".replaceAll("\\{" + "folioConsulta" + "\\}",
+		String localVarPath = "/{folioConsulta}/mensajes".replaceAll("\\{" + "folioConsulta" + "\\}",
 				apiClient.escapeString(folioConsulta.toString()));
 		List<Pair> localVarQueryParams = new ArrayList<Pair>();
 		List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -381,50 +389,50 @@ public class RCCLightFicoScorePldApi {
 				localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
 	}
 
-	private okhttp3.Call getPLDValidateBeforeCall(String folioConsulta, String xApiKey,
-			String username, String password, final ProgressResponseBody.ProgressListener progressListener,
+	private okhttp3.Call getMensajesValidateBeforeCall(String folioConsulta, String xApiKey, String username,
+			String password, final ProgressResponseBody.ProgressListener progressListener,
 			final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
 		if (folioConsulta == null) {
-			throw new ApiException("Missing the required parameter 'folioConsulta' when calling getPLD(Async)");
+			throw new ApiException("Missing the required parameter 'folioConsulta' when calling getMensajes(Async)");
 		}
 		if (xApiKey == null) {
-			throw new ApiException("Missing the required parameter 'xApiKey' when calling getPLD(Async)");
+			throw new ApiException("Missing the required parameter 'xApiKey' when calling getMensajes(Async)");
 		}
 		if (username == null) {
-			throw new ApiException("Missing the required parameter 'username' when calling getPLD(Async)");
+			throw new ApiException("Missing the required parameter 'username' when calling getMensajes(Async)");
 		}
 		if (password == null) {
-			throw new ApiException("Missing the required parameter 'password' when calling getPLD(Async)");
+			throw new ApiException("Missing the required parameter 'password' when calling getMensajes(Async)");
 		}
 
-		okhttp3.Call call = getPLDCall(folioConsulta, xApiKey, username, password, progressListener,
+		okhttp3.Call call = getMensajesCall(folioConsulta, xApiKey, username, password, progressListener,
 				progressRequestListener);
 		return call;
 	}
 
-	public PersonasPLD getPLD(String folioConsulta, String xApiKey, String username, String password)
+	public Mensajes getMensajes(String folioConsulta, String xApiKey, String username, String password)
 			throws ApiException {
-		ApiResponse<PersonasPLD> resp = getPLDWithHttpInfo(folioConsulta, xApiKey, username, password);
+		ApiResponse<Mensajes> resp = getMensajesWithHttpInfo(folioConsulta, xApiKey, username, password);
 		return resp.getData();
 	}
 
-	public ApiResponse<PersonasPLD> getPLDWithHttpInfo(String folioConsulta, String xApiKey,
-			String username, String password) throws ApiException {
-		okhttp3.Call call = getPLDValidateBeforeCall(folioConsulta, xApiKey, username, password, null,
-				null);
-		Type localVarReturnType = new TypeToken<PersonasPLD>() {
+	public ApiResponse<Mensajes> getMensajesWithHttpInfo(String folioConsulta, String xApiKey, String username,
+			String password) throws ApiException {
+		okhttp3.Call call = getMensajesValidateBeforeCall(folioConsulta, xApiKey, username, password, null, null);
+		Type localVarReturnType = new TypeToken<Mensajes>() {
 		}.getType();
 		return apiClient.execute(call, localVarReturnType);
 	}
 
 	public okhttp3.Call getReporteCall(String xApiKey, String username, String password,
-			PersonaPeticion body, Boolean xFullReport, final ProgressResponseBody.ProgressListener progressListener,
+			Persona body, Boolean xFullReport, final ProgressResponseBody.ProgressListener progressListener,
 			final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
 		Object localVarPostBody = body;
 		String localVarPath = "";
 		List<Pair> localVarQueryParams = new ArrayList<Pair>();
 		List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 		Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+			
 		if (xApiKey != null)
 			localVarHeaderParams.put("x-api-key", apiClient.parameterToString(xApiKey));
 		if (username != null)
@@ -457,7 +465,7 @@ public class RCCLightFicoScorePldApi {
 	}
 
 	private okhttp3.Call getReporteValidateBeforeCall(String xApiKey, String username,
-			String password, PersonaPeticion body, Boolean xFullReport,
+			String password, Persona body, Boolean xFullReport,
 			final ProgressResponseBody.ProgressListener progressListener,
 			final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
 		if (xApiKey == null) {
@@ -478,15 +486,15 @@ public class RCCLightFicoScorePldApi {
 		return call;
 	}
 
-	public Respuesta getReporte(String xApiKey, String username, String password,
-			PersonaPeticion body, Boolean xFullReport) throws ApiException {
+	public Respuesta getReporte(String xApiKey, String username, String password, Persona body,
+			Boolean xFullReport) throws ApiException {
 		ApiResponse<Respuesta> resp = getReporteWithHttpInfo(xApiKey, username, password, body,
 				xFullReport);
 		return resp.getData();
 	}
 
 	public ApiResponse<Respuesta> getReporteWithHttpInfo(String xApiKey, String username,
-			String password, PersonaPeticion body, Boolean xFullReport) throws ApiException {
+			String password, Persona body, Boolean xFullReport) throws ApiException {
 		okhttp3.Call call = getReporteValidateBeforeCall(xApiKey, username, password, body, xFullReport,
 				null, null);
 		Type localVarReturnType = new TypeToken<Respuesta>() {
@@ -503,6 +511,7 @@ public class RCCLightFicoScorePldApi {
 		List<Pair> localVarQueryParams = new ArrayList<Pair>();
 		List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 		Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
 		if (xApiKey != null)
 			localVarHeaderParams.put("x-api-key", apiClient.parameterToString(xApiKey));
 		if (username != null)

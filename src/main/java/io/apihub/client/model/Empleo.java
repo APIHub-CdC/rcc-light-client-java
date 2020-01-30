@@ -14,16 +14,16 @@ public class Empleo {
 	private String nombreEmpresa = null;
 	@SerializedName("direccion")
 	private String direccion = null;
-	@SerializedName("colonia")
-	private String colonia = null;
-	@SerializedName("municipio")
-	private String municipio = null;
+	@SerializedName("coloniaPoblacion")
+	private String coloniaPoblacion = null;
+	@SerializedName("delegacionMunicipio")
+	private String delegacionMunicipio = null;
 	@SerializedName("ciudad")
 	private String ciudad = null;
 	@SerializedName("estado")
 	private CatalogoEstados estado = null;
-	@SerializedName("codigoPostal")
-	private String codigoPostal = null;
+	@SerializedName("CP")
+	private String CP = null;
 	@SerializedName("numeroTelefono")
 	private String numeroTelefono = null;
 	@SerializedName("extension")
@@ -37,7 +37,7 @@ public class Empleo {
 	@SerializedName("claveMoneda")
 	private CatalogoMoneda claveMoneda = null;
 	@SerializedName("salarioMensual")
-	private String salarioMensual = null;
+	private Integer salarioMensual = null;
 	@SerializedName("fechaUltimoDiaEmpleo")
 	private String fechaUltimoDiaEmpleo = null;
 	@SerializedName("fechaVerificacionEmpleo")
@@ -71,32 +71,32 @@ public class Empleo {
 		this.direccion = direccion;
 	}
 
-	public Empleo colonia(String colonia) {
-		this.colonia = colonia;
+	public Empleo coloniaPoblacion(String coloniaPoblacion) {
+		this.coloniaPoblacion = coloniaPoblacion;
 		return this;
 	}
 
 	@ApiModelProperty(example = "CENTRO", value = "Reportar la colonia a la cual pertenece la dirección contenida en el elemento dirección.")
-	public String getColonia() {
-		return colonia;
+	public String getColoniaPoblacion() {
+		return coloniaPoblacion;
 	}
 
-	public void setColonia(String colonia) {
-		this.colonia = colonia;
+	public void setColoniaPoblacion(String coloniaPoblacion) {
+		this.coloniaPoblacion = coloniaPoblacion;
 	}
 
-	public Empleo municipio(String municipio) {
-		this.municipio = municipio;
+	public Empleo delegacionMunicipio(String delegacionMunicipio) {
+		this.delegacionMunicipio = delegacionMunicipio;
 		return this;
 	}
 
 	@ApiModelProperty(example = "LA BARCA", value = "Reportar la delegación o municipio a la cual pertenece la dirección contenida en el elemento Dirección.")
-	public String getMunicipio() {
-		return municipio;
+	public String getDelegacionMunicipio() {
+		return delegacionMunicipio;
 	}
 
-	public void setMunicipio(String municipio) {
-		this.municipio = municipio;
+	public void setDelegacionMunicipio(String delegacionMunicipio) {
+		this.delegacionMunicipio = delegacionMunicipio;
 	}
 
 	public Empleo ciudad(String ciudad) {
@@ -127,18 +127,18 @@ public class Empleo {
 		this.estado = estado;
 	}
 
-	public Empleo codigoPostal(String codigoPostal) {
-		this.codigoPostal = codigoPostal;
+	public Empleo CP(String CP) {
+		this.CP = CP;
 		return this;
 	}
 
 	@ApiModelProperty(example = "47917", value = "El código postal reportado debeestar compuesto por 5 dígitos. Para que el código postal sea válido deberá corresponder al estado reportado.")
-	public String getCodigoPostal() {
-		return codigoPostal;
+	public String getCP() {
+		return CP;
 	}
 
-	public void setCodigoPostal(String codigoPostal) {
-		this.codigoPostal = codigoPostal;
+	public void setCP(String CP) {
+		this.CP = CP;
 	}
 
 	public Empleo numeroTelefono(String numeroTelefono) {
@@ -146,7 +146,7 @@ public class Empleo {
 		return this;
 	}
 
-	@ApiModelProperty(value = "Número telefónico del empleo.")
+	@ApiModelProperty(value = "Debe de contener una longitud mínima de 5 caracteres. Cada carácter debe ser un número de 0-9, si se ingresa cualquier otro carácter el registro será rechazado.")
 	public String getNumeroTelefono() {
 		return numeroTelefono;
 	}
@@ -160,7 +160,7 @@ public class Empleo {
 		return this;
 	}
 
-	@ApiModelProperty(example = "", value = "Extensión telefónica.")
+	@ApiModelProperty(value = "Si se cuenta con la información reportar la extensión telefónica del consumidor.")
 	public String getExtension() {
 		return extension;
 	}
@@ -174,7 +174,7 @@ public class Empleo {
 		return this;
 	}
 
-	@ApiModelProperty(value = "Fax.")
+	@ApiModelProperty(value = "Mismos criterios de validación que en el elemento Número Telefónico.")
 	public String getFax() {
 		return fax;
 	}
@@ -225,17 +225,17 @@ public class Empleo {
 		this.claveMoneda = claveMoneda;
 	}
 
-	public Empleo salarioMensual(String salarioMensual) {
+	public Empleo salarioMensual(Integer salarioMensual) {
 		this.salarioMensual = salarioMensual;
 		return this;
 	}
 
-	@ApiModelProperty(value = "Ingreso Mensual.")
-	public String getSalarioMensual() {
+	@ApiModelProperty(value = "Debe de reportarse el ingreso mensual del consumidor. En caso de Reportar Clave de Moneda este elemento se hace requerido.")
+	public Integer getSalarioMensual() {
 		return salarioMensual;
 	}
 
-	public void setSalarioMensual(String salarioMensual) {
+	public void setSalarioMensual(Integer salarioMensual) {
 		this.salarioMensual = salarioMensual;
 	}
 
@@ -244,7 +244,7 @@ public class Empleo {
 		return this;
 	}
 
-	@ApiModelProperty(value = "Fecha del último día que trabajo en esa empresa.")
+	@ApiModelProperty(value = "Debe de reportarse la fecha del último día de trabajo en esta empresa.")
 	public String getFechaUltimoDiaEmpleo() {
 		return fechaUltimoDiaEmpleo;
 	}
@@ -258,7 +258,7 @@ public class Empleo {
 		return this;
 	}
 
-	@ApiModelProperty(value = "Fecha en que el otorgante verificó los datos proporcionados por el acreditado.")
+	@ApiModelProperty(value = "")
 	public String getFechaVerificacionEmpleo() {
 		return fechaVerificacionEmpleo;
 	}
@@ -277,10 +277,11 @@ public class Empleo {
 		}
 		Empleo empleo = (Empleo) o;
 		return Objects.equals(this.nombreEmpresa, empleo.nombreEmpresa)
-				&& Objects.equals(this.direccion, empleo.direccion) && Objects.equals(this.colonia, empleo.colonia)
-				&& Objects.equals(this.municipio, empleo.municipio) && Objects.equals(this.ciudad, empleo.ciudad)
-				&& Objects.equals(this.estado, empleo.estado) && Objects.equals(this.codigoPostal, empleo.codigoPostal)
-				&& Objects.equals(this.numeroTelefono, empleo.numeroTelefono)
+				&& Objects.equals(this.direccion, empleo.direccion)
+				&& Objects.equals(this.coloniaPoblacion, empleo.coloniaPoblacion)
+				&& Objects.equals(this.delegacionMunicipio, empleo.delegacionMunicipio)
+				&& Objects.equals(this.ciudad, empleo.ciudad) && Objects.equals(this.estado, empleo.estado)
+				&& Objects.equals(this.CP, empleo.CP) && Objects.equals(this.numeroTelefono, empleo.numeroTelefono)
 				&& Objects.equals(this.extension, empleo.extension) && Objects.equals(this.fax, empleo.fax)
 				&& Objects.equals(this.puesto, empleo.puesto)
 				&& Objects.equals(this.fechaContratacion, empleo.fechaContratacion)
@@ -292,9 +293,9 @@ public class Empleo {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(nombreEmpresa, direccion, colonia, municipio, ciudad, estado, codigoPostal, numeroTelefono,
-				extension, fax, puesto, fechaContratacion, claveMoneda, salarioMensual, fechaUltimoDiaEmpleo,
-				fechaVerificacionEmpleo);
+		return Objects.hash(nombreEmpresa, direccion, coloniaPoblacion, delegacionMunicipio, ciudad, estado, CP,
+				numeroTelefono, extension, fax, puesto, fechaContratacion, claveMoneda, salarioMensual,
+				fechaUltimoDiaEmpleo, fechaVerificacionEmpleo);
 	}
 
 	@Override
@@ -304,11 +305,11 @@ public class Empleo {
 
 		sb.append("    nombreEmpresa: ").append(toIndentedString(nombreEmpresa)).append("\n");
 		sb.append("    direccion: ").append(toIndentedString(direccion)).append("\n");
-		sb.append("    colonia: ").append(toIndentedString(colonia)).append("\n");
-		sb.append("    municipio: ").append(toIndentedString(municipio)).append("\n");
+		sb.append("    coloniaPoblacion: ").append(toIndentedString(coloniaPoblacion)).append("\n");
+		sb.append("    delegacionMunicipio: ").append(toIndentedString(delegacionMunicipio)).append("\n");
 		sb.append("    ciudad: ").append(toIndentedString(ciudad)).append("\n");
 		sb.append("    estado: ").append(toIndentedString(estado)).append("\n");
-		sb.append("    codigoPostal: ").append(toIndentedString(codigoPostal)).append("\n");
+		sb.append("    CP: ").append(toIndentedString(CP)).append("\n");
 		sb.append("    numeroTelefono: ").append(toIndentedString(numeroTelefono)).append("\n");
 		sb.append("    extension: ").append(toIndentedString(extension)).append("\n");
 		sb.append("    fax: ").append(toIndentedString(fax)).append("\n");

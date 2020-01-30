@@ -120,6 +120,7 @@ public enum CatalogoTipoAsentamiento {
 	_54("54"),
 
 	_55("55");
+
 	private String value;
 
 	CatalogoTipoAsentamiento(String value) {

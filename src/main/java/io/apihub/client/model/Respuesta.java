@@ -7,8 +7,8 @@ import io.apihub.client.model.Consulta;
 import io.apihub.client.model.Credito;
 import io.apihub.client.model.Domicilio;
 import io.apihub.client.model.Empleo;
-import io.apihub.client.model.PersonaPLD;
-import io.apihub.client.model.PersonaRespuesta;
+import io.apihub.client.model.Mensaje;
+import io.apihub.client.model.Persona;
 import io.apihub.client.model.Score;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +16,14 @@ import java.util.List;
 public class Respuesta {
 	@SerializedName("folioConsulta")
 	private String folioConsulta = null;
+	@SerializedName("folioConsultaOtorgante")
+	private String folioConsultaOtorgante = null;
+	@SerializedName("claveOtorgante")
+	private String claveOtorgante = null;
+	@SerializedName("declaracionesConsumidor")
+	private String declaracionesConsumidor = null;
 	@SerializedName("persona")
-	private PersonaRespuesta persona = null;
+	private List<Persona> persona = null;
 	@SerializedName("consultas")
 	private List<Consulta> consultas = null;
 	@SerializedName("creditos")
@@ -28,8 +34,8 @@ public class Respuesta {
 	private List<Empleo> empleos = null;
 	@SerializedName("scores")
 	private List<Score> scores = null;
-	@SerializedName("pld")
-	private List<PersonaPLD> pld = null;
+	@SerializedName("mensajes")
+	private List<Mensaje> mensajes = null;
 
 	public Respuesta folioConsulta(String folioConsulta) {
 		this.folioConsulta = folioConsulta;
@@ -45,17 +51,59 @@ public class Respuesta {
 		this.folioConsulta = folioConsulta;
 	}
 
-	public Respuesta persona(PersonaRespuesta persona) {
+	public Respuesta folioConsultaOtorgante(String folioConsultaOtorgante) {
+		this.folioConsultaOtorgante = folioConsultaOtorgante;
+		return this;
+	}
+
+	@ApiModelProperty(example = "0000001", value = "Folio de la consulta con relación al otorgante")
+	public String getFolioConsultaOtorgante() {
+		return folioConsultaOtorgante;
+	}
+
+	public void setFolioConsultaOtorgante(String folioConsultaOtorgante) {
+		this.folioConsultaOtorgante = folioConsultaOtorgante;
+	}
+
+	public Respuesta claveOtorgante(String claveOtorgante) {
+		this.claveOtorgante = claveOtorgante;
+		return this;
+	}
+
+	@ApiModelProperty(example = "API001", value = "Clave del otorgante")
+	public String getClaveOtorgante() {
+		return claveOtorgante;
+	}
+
+	public void setClaveOtorgante(String claveOtorgante) {
+		this.claveOtorgante = claveOtorgante;
+	}
+
+	public Respuesta declaracionesConsumidor(String declaracionesConsumidor) {
+		this.declaracionesConsumidor = declaracionesConsumidor;
+		return this;
+	}
+
+	@ApiModelProperty(example = "Inconforme con el Resultado", value = "")
+	public String getDeclaracionesConsumidor() {
+		return declaracionesConsumidor;
+	}
+
+	public void setDeclaracionesConsumidor(String declaracionesConsumidor) {
+		this.declaracionesConsumidor = declaracionesConsumidor;
+	}
+
+	public Respuesta persona(List<Persona> persona) {
 		this.persona = persona;
 		return this;
 	}
 
 	@ApiModelProperty(value = "")
-	public PersonaRespuesta getPersona() {
+	public List<Persona> getPersona() {
 		return persona;
 	}
 
-	public void setPersona(PersonaRespuesta persona) {
+	public void setPersona(List<Persona> persona) {
 		this.persona = persona;
 	}
 
@@ -169,26 +217,26 @@ public class Respuesta {
 		this.scores = scores;
 	}
 
-	public Respuesta pld(List<PersonaPLD> pld) {
-		this.pld = pld;
+	public Respuesta mensajes(List<Mensaje> mensajes) {
+		this.mensajes = mensajes;
 		return this;
 	}
 
-	public Respuesta addPldItem(PersonaPLD pldItem) {
-		if (this.pld == null) {
-			this.pld = new ArrayList<PersonaPLD>();
+	public Respuesta addMensajesItem(Mensaje mensajesItem) {
+		if (this.mensajes == null) {
+			this.mensajes = new ArrayList<Mensaje>();
 		}
-		this.pld.add(pldItem);
+		this.mensajes.add(mensajesItem);
 		return this;
 	}
 
 	@ApiModelProperty(value = "")
-	public List<PersonaPLD> getPld() {
-		return pld;
+	public List<Mensaje> getMensajes() {
+		return mensajes;
 	}
 
-	public void setPld(List<PersonaPLD> pld) {
-		this.pld = pld;
+	public void setMensajes(List<Mensaje> mensajes) {
+		this.mensajes = mensajes;
 	}
 
 	@Override
@@ -201,17 +249,21 @@ public class Respuesta {
 		}
 		Respuesta respuesta = (Respuesta) o;
 		return Objects.equals(this.folioConsulta, respuesta.folioConsulta)
+				&& Objects.equals(this.folioConsultaOtorgante, respuesta.folioConsultaOtorgante)
+				&& Objects.equals(this.claveOtorgante, respuesta.claveOtorgante)
+				&& Objects.equals(this.declaracionesConsumidor, respuesta.declaracionesConsumidor)
 				&& Objects.equals(this.persona, respuesta.persona)
 				&& Objects.equals(this.consultas, respuesta.consultas)
 				&& Objects.equals(this.creditos, respuesta.creditos)
 				&& Objects.equals(this.domicilios, respuesta.domicilios)
 				&& Objects.equals(this.empleos, respuesta.empleos) && Objects.equals(this.scores, respuesta.scores)
-				&& Objects.equals(this.pld, respuesta.pld);
+				&& Objects.equals(this.mensajes, respuesta.mensajes);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(folioConsulta, persona, consultas, creditos, domicilios, empleos, scores, pld);
+		return Objects.hash(folioConsulta, folioConsultaOtorgante, claveOtorgante, declaracionesConsumidor, persona,
+				consultas, creditos, domicilios, empleos, scores, mensajes);
 	}
 
 	@Override
@@ -220,13 +272,16 @@ public class Respuesta {
 		sb.append("class Respuesta {\n");
 
 		sb.append("    folioConsulta: ").append(toIndentedString(folioConsulta)).append("\n");
+		sb.append("    folioConsultaOtorgante: ").append(toIndentedString(folioConsultaOtorgante)).append("\n");
+		sb.append("    claveOtorgante: ").append(toIndentedString(claveOtorgante)).append("\n");
+		sb.append("    declaracionesConsumidor: ").append(toIndentedString(declaracionesConsumidor)).append("\n");
 		sb.append("    persona: ").append(toIndentedString(persona)).append("\n");
 		sb.append("    consultas: ").append(toIndentedString(consultas)).append("\n");
 		sb.append("    creditos: ").append(toIndentedString(creditos)).append("\n");
 		sb.append("    domicilios: ").append(toIndentedString(domicilios)).append("\n");
 		sb.append("    empleos: ").append(toIndentedString(empleos)).append("\n");
 		sb.append("    scores: ").append(toIndentedString(scores)).append("\n");
-		sb.append("    pld: ").append(toIndentedString(pld)).append("\n");
+		sb.append("    mensajes: ").append(toIndentedString(mensajes)).append("\n");
 		sb.append("}");
 		return sb.toString();
 	}

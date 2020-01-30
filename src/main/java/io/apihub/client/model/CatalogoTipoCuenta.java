@@ -24,6 +24,7 @@ public enum CatalogoTipoCuenta {
 	E("E"),
 
 	P("P");
+
 	private String value;
 
 	CatalogoTipoCuenta(String value) {

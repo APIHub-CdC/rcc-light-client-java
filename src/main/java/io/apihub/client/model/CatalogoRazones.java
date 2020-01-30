@@ -306,6 +306,7 @@ public enum CatalogoRazones {
 	C5("C5"),
 
 	SC("SC");
+
 	private String value;
 
 	CatalogoRazones(String value) {
